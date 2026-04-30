@@ -14,14 +14,14 @@ export default function Navbar({ onLoginClick }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
         <Link href="/" className="flex items-center">
-          <Image
+         <Image
             src="/assets/logo.png"
             alt="ResolveX Logo"
             width={100}
             height={100}
             className="h-24 w-auto object-contain"
           />
-        </Link>
+        </Link> 
 
        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
   {[

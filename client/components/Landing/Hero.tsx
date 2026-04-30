@@ -17,7 +17,12 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function Hero() {
+type HeroProps = {
+  onLoginClick: () => void;
+};
+
+
+export default function Hero({ onLoginClick }: HeroProps) {
   return (
     <motion.section
       variants={container}
@@ -57,19 +62,13 @@ export default function Hero() {
             variants={fadeUp}
             className="mt-8 flex gap-4"
           >
-            <Link
-              href="/signup"
+            <button
+              onClick={onLoginClick}
               className="px-6 py-3 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition"
             >
               Get Started
-            </Link>
+            </button>
 
-            <Link
-              href="/demo"
-              className="px-6 py-3 rounded-lg border border-white/20 hover:bg-white/10 transition"
-            >
-              Request Demo
-            </Link>
           </motion.div>
 
         </div>
