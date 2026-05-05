@@ -7,7 +7,7 @@ class Organisation(models.Model):
     email = models.EmailField(max_length=255, unique=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
     website = models.URLField(blank=True, null=True)
-    industry = models.CharField(max_length=255)
+    industry = models.CharField(max_length=255, blank=True, null=True)
     logo = models.ImageField(upload_to='organization/logos/', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
