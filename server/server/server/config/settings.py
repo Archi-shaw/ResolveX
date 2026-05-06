@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'app.organisations',
     'app.accounts.apps.AccountsConfig',
     'app.invitations',
+    'app.tickets',
+    'app.comments',
+    'app.attachments'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

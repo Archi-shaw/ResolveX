@@ -7,6 +7,6 @@ from .views import (
 
 urlpatterns = [
     path("", InvitationListCreateView.as_view(), name="invitations"),
-    path("accept/<str:token>/", AcceptInvitationView.as_view(), name="accept-invitation"),
-    path("reject/<str:token>/", RejectInvitationView.as_view(), name="reject-invitation"),
+    path("accept/<str:tokens>/", AcceptInvitationView.as_view(), name="accept-invitation"),
+    path("reject/<str:tokens>/", RejectInvitationView.as_view(), name="reject-invitation"),
 ]

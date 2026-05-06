@@ -39,8 +39,8 @@ class InvitationListCreateView(APIView):
         return Response(
             {
                 "message": "Invitation created successfully.",
-                "token": invitation.tokens,
-                "invite_link": f"http://frontend.com/accept-invite/{invitation.tokens}",
+                "tokens": invitation.tokens,
+                "invite_link": f"http://127.0.0.1:8000/api/v1/invitations/accept/{invitation.tokens}",
             },
             status=status.HTTP_201_CREATED,
         )
@@ -49,12 +49,12 @@ class InvitationListCreateView(APIView):
 class AcceptInvitationView(APIView):
     permission_classes = [permissions.AllowAny]
 
-    def post(self, request, token):
+    def post(self, request, tokens):
         serializer = AcceptInviteSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         user = accept_invitation(
-            token=token,
+            tokens=tokens,
             name=serializer.validated_data["name"],
             phone=serializer.validated_data.get("phone", ""),
             password=serializer.validated_data["password"],
@@ -73,8 +73,8 @@ class AcceptInvitationView(APIView):
 class RejectInvitationView(APIView):
     permission_classes = [permissions.AllowAny]
 
-    def post(self, request, token):
-        reject_invitation(token=token)
+    def post(self, request, tokens):
+        reject_invitation(tokens=tokens)
 
         return Response(
             {"message": "Invitation rejected successfully."},

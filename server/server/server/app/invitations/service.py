@@ -12,6 +12,8 @@ def create_invitation(*, invited_by, email, role):
     if invited_by.role != "ADMIN":
         raise PermissionDenied("Only organization admins can send invitations.")
 
+    if not invited_by.organisation:
+         raise ValidationError("Admin user has no organisation.")
     if User.objects.filter(email=email).exists():
         raise ValidationError("User with this email already exists.")
 
@@ -31,15 +33,14 @@ def create_invitation(*, invited_by, email, role):
     organisation=invited_by.organisation,  
     )
     print("Invitation token:", invitation.tokens)
-    print("Invite link:", f"http://frontend.com/accept-invite/{invitation.tokens}")
-
+    print("Invite link:", f"http://127.0.0.1:8000/api/v1/invitations/accept/{invitation.tokens}/")
     return invitation
 
 
 @transaction.atomic
-def accept_invitation(*, token, name, phone="", password):
+def accept_invitation(*, tokens, name, phone="", password):
     try:
-        invitation = Invitation.objects.select_for_update().get(token=token)
+        invitation = Invitation.objects.select_for_update().get(tokens=tokens)
     except Invitation.DoesNotExist:
         raise ValidationError("Invalid invitation token.")
 
@@ -70,9 +71,9 @@ def accept_invitation(*, token, name, phone="", password):
     return user
 
 
-def reject_invitation(*, token):
+def reject_invitation(*, tokens):
     try:
-        invitation = Invitation.objects.get(token=token)
+        invitation = Invitation.objects.get(tokens=tokens)
     except Invitation.DoesNotExist:
         raise ValidationError("Invalid invitation token.")
 

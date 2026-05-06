@@ -24,4 +24,5 @@ urlpatterns = [
     path('api/v1/auth/', include('app.accounts.urls')),  
     path("api/v1/", include("app.accounts.urls")),
     path("api/v1/invitations/", include("app.invitations.urls")),
+    path("api/v1/tickets/", include("app.tickets.urls")),
 ]
