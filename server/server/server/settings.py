@@ -69,9 +69,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "noreply@resolvex.com"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "app.common.pagination.StandardPagination",
+    "PAGE_SIZE": 10,
+    "EXCEPTION_HANDLER": "app.common.exceptions.custom_exception_handler",
+}
+
 
 DATABASES = {
     'default': {

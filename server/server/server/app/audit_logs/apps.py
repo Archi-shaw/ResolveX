@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
-class CommentsConfig(AppConfig):
+
+class AuditLogsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "app.comments"
+    name = "app.audit_logs"

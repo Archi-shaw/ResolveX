@@ -43,7 +43,11 @@ INSTALLED_APPS = [
     'app.invitations',
     'app.tickets',
     'app.comments',
-    'app.attachments'
+    'app.attachments',
+    'app.notifications.apps.NotificationsConfig',
+    "app.audit_logs.apps.AuditLogsConfig",
+    "app.analytics.apps.AnalyticsConfig",
+    "app.feature_flags.apps.FeatureFlagsConfig",
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -149,3 +153,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME':timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME':timedelta(days=1)
 }
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
