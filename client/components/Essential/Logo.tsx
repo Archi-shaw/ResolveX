@@ -14,7 +14,6 @@ export function Logo({ className }: LogoProps) {
 
   return (
     <div className={cn("flex items-center gap-3 mx-auto px-1 py-4 w-full", className)}>
-      {/* Logo Icon - Always visible */}
       <div className="relative flex-shrink-0">
            <Image
                        src="/assets/logo.png"
@@ -25,7 +24,6 @@ export function Logo({ className }: LogoProps) {
                      />
             </div>
 
-      {/* Logo Text - Hidden when collapsed */}
       <div
         className={cn(
           "transition-all duration-300 overflow-hidden min-w-0",

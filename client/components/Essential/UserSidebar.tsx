@@ -148,19 +148,22 @@
 //     </Sidebar>
 //   );
 // }
+
+
 "use client";
 
 import {
   LayoutDashboard,
-  ClipboardList,
-  BarChart3,
+  TicketPlus,
   User,
-  HelpCircle,
   FileText,
+  HelpCircle,
   Building2,
 } from "lucide-react";
+
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+
 import {
   Sidebar,
   SidebarContent,
@@ -173,27 +176,48 @@ import {
   SidebarGroupContent,
   useSidebar,
 } from "@/components/ui/sidebar";
+
 import { cn } from "@/lib/utils";
 
 const mainLinks = [
-  { title: "Dashboard", url: "/agent", icon: LayoutDashboard },
-  { title: "Assigned Tasks", url: "/agent/tasks", icon: ClipboardList },
-  { title: "Stats", url: "/agent/stats", icon: BarChart3 },
-  { title: "Profile", url: "/agent/profile", icon: User },
+  {
+    title: "Dashboard",
+    url: "/user",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Raise Ticket",
+    url: "/user/raise-ticket",
+    icon: TicketPlus,
+  },
+  {
+    title: "Profile",
+    url: "/user/profile",
+    icon: User,
+  },
 ];
 
 const footerLinks = [
-  { title: "Docs", url: "/agent/docs", icon: FileText },
-  { title: "Help", url: "/agent/help", icon: HelpCircle },
+  {
+    title: "Docs",
+    url: "/user/docs",
+    icon: FileText,
+  },
+  {
+    title: "Help",
+    url: "/user/help",
+    icon: HelpCircle,
+  },
 ];
 
-export function AgentSidebar() {
+export function UserSidebar() {
   const pathname = usePathname();
   const { state } = useSidebar();
+
   const isCollapsed = state === "collapsed";
 
   const isActiveLink = (url: string) => {
-    if (url === "/agent") return pathname === url;
+    if (url === "/user") return pathname === url;
     return pathname?.startsWith(url);
   };
 
@@ -222,7 +246,9 @@ export function AgentSidebar() {
             />
 
             {!isCollapsed && (
-              <span className="text-[13px] font-medium">{item.title}</span>
+              <span className="text-[13px] font-medium">
+                {item.title}
+              </span>
             )}
           </Link>
         </SidebarMenuButton>
@@ -244,8 +270,13 @@ export function AgentSidebar() {
 
             {!isCollapsed && (
               <div className="leading-tight">
-                <h2 className="text-sm font-semibold text-white">Agent Panel</h2>
-                <p className="text-[11px] text-zinc-500">Task Workspace</p>
+                <h2 className="text-sm font-semibold text-white">
+                  User Panel
+                </h2>
+
+                <p className="text-[11px] text-zinc-500">
+                  Support Workspace
+                </p>
               </div>
             )}
           </div>
